@@ -1,0 +1,98 @@
+.mta {
+  display: inline-block;
+  text-align: left;
+  list-style: none;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  animation: marquee 50s linear infinite;
+}
+
+.mta__train {
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  display: inline-grid;
+  align-content: center;
+}
+
+.mta__train--item {
+  align-items: center;
+  margin: 0 10px;
+  padding-left: 10px;
+}
+
+.mta__train--logo {
+  line-height: 29px;
+  margin-right: 10px;
+}
+
+.mta__train--time,
+.mta__train--destination {
+    display: inline;
+}
+
+.mta__train--time{
+  color: #fff;
+}
+
+.mta__train--line-a,
+.mta__train--line-c,
+.mta__train--line-e {
+  background: #0039a6;
+}
+
+.mta__train--line-b,
+.mta__train--line-d,
+.mta__train--line-f,
+.mta__train--line-m {
+  background: #ff6319;
+}
+
+.mta__train--line-g {
+  background: #6cbe45;
+}
+
+.mta__train--line-j,
+.mta__train--line-z {
+  background: #963;
+}
+
+.mta__train--line-l {
+  background: #a7a9ac;
+}
+
+.mta__train--line-n,
+.mta__train--line-q,
+.mta__train--line-r {
+  background: #fccc0a;
+}
+
+.mta__train--line-s {
+  background: #808183;
+}
+
+.mta__train--line-1,
+.mta__train--line-2,
+.mta__train--line-3 {
+  background: #ee352E
+}
+
+.mta__train--line-4,
+.mta__train--line-5,
+.mta__train--line-6 {
+  background: #00933c;
+}
+
+.mta__train--train-7 {
+  background: #b933ad;
+}

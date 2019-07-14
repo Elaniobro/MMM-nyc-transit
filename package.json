@@ -1,0 +1,42 @@
+{
+  "name": "mmm-nyc-transit",
+  "version": "1.0.0",
+  "description": "New York City realtime transit module for magic mirror",
+  "main": "MMM-nyc-transit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.js --ignore-pattern node_modules/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elaniobro/MMM-nyc-transit"
+  },
+  "keywords": [
+    "Magic",
+    "Mirror",
+    "Magic Mirror",
+    "MMM",
+    "NYC",
+    "transit",
+    "subway",
+    "bus"
+  ],
+  "author": {
+    "name": "Elan Trybuch",
+    "email": "elan@trybuch.com",
+    "url": "https://elan.trybuch.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "eslint": "^6.0.1",
+    "fs-extra": "^7.0.0",
+    "husky": "^3.0.0",
+    "mta-realtime-subway-departures": "0.0.13"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
