@@ -47,7 +47,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
                 var uHtml = '';
                 var upTownListItem = document.createElement('span');
 
-                uHtml = uHtml + '<span class="mta mta__train mta__train--logo mta__train--line-' + upTown[uKey].routeId.toLowerCase() + '">' + upTown[uKey].routeId.toLowerCase() + '</span><span class="mta mta_train mta__train--time mta_train-time__' + uKey + '">' + upTown[uKey].time + '</span> | <span class="mta mta_train mta__train--destination">' + upTown[uKey].destination + '</span>'; /*eslint-disable-line*/
+                uHtml = uHtml + '<span class="mta mta__train mta__train--logo mta__train--line-' + upTown[uKey].routeId.toLowerCase() + '">' + upTown[uKey].routeId.toLowerCase() + '</span><span class="mta mta_train mta__train--time mta_train-time__' + uKey + '">' + upTown[uKey].time + 'min</span> | <span class="mta mta_train mta__train--destination">' + upTown[uKey].destination + '</span>'; /*eslint-disable-line*/
 
                 upTownListItem.className = 'mta__train--item';
                 upTownListItem.innerHTML = uHtml;
@@ -60,7 +60,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
                 var dHtml = '';
                 var downTownListItem = document.createElement('span');
 
-                dHtml = dHtml + '<span class="mta mta__train mta__train--logo mta__train--line-' + downTown[dKey].routeId.toLowerCase() + '">' + downTown[dKey].routeId.toLowerCase() + '</span><span class="mta mta_train mta__train--time mta_train-time__' + (parseFloat(dKey) + 4) + '">' + downTown[dKey].time + '</span> | <span class="mta mta_train mta__train--destination">' + downTown[dKey].destination + '</span>'; /*eslint-disable-line*/
+                dHtml = dHtml + '<span class="mta mta__train mta__train--logo mta__train--line-' + downTown[dKey].routeId.toLowerCase() + '">' + downTown[dKey].routeId.toLowerCase() + '</span><span class="mta mta_train mta__train--time mta_train-time__' + (parseFloat(dKey) + 4) + '">' + downTown[dKey].time + 'min</span> | <span class="mta mta_train mta__train--destination">' + downTown[dKey].destination + '</span>'; /*eslint-disable-line*/
 
                 downTownListItem.className = 'mta__train--item';
                 downTownListItem.innerHTML = dHtml;
