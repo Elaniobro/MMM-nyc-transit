@@ -59,7 +59,7 @@ module.exports = NodeHelper.create({
                     });
                 });
 
-                self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 1) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 1)}]);
+                self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3)}]);
             })
             .catch(err => {
                 throw new Error(err);
