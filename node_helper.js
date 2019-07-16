@@ -40,7 +40,7 @@ module.exports = NodeHelper.create({
                         line.departures.S.forEach((i) => {
                             upTown.push({
                                 'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime) + 'min',
+                                'time': this.getDate(i.time, walkingTime),
                                 'destination': (i.destinationStationId === '281') ?
                                     stationIds['606'].name :
                                     stationIds[i.destinationStationId].name
@@ -50,7 +50,7 @@ module.exports = NodeHelper.create({
                         line.departures.N.forEach((i) => {
                             downTown.push({
                                 'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime) + 'min',
+                                'time': this.getDate(i.time, walkingTime),
                                 'destination': (i.destinationStationId === '281') ?
                                     stationIds['606'].name :
                                     stationIds[i.destinationStationId].name
@@ -59,7 +59,7 @@ module.exports = NodeHelper.create({
                     });
                 });
 
-                self.sendSocketNotification('TRAIN_TABLE', [{downTown: downTown.slice(0,3)}, {upTown: upTown.slice(0,3)}]);
+                self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 1) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 1)}]);
             })
             .catch(err => {
                 throw new Error(err);
@@ -77,7 +77,7 @@ module.exports = NodeHelper.create({
         // Will display time in minutes format
         var formattedTime = Number(mindiff.substr(-2));
 
-        return formattedTime + walkingTime;
+        return formattedTime - walkingTime;
     },
 
     //Subclass socketNotificationReceived received.
