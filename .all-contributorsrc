@@ -18,6 +18,15 @@
         "maintenance",
         "infra"
       ]
+    },
+    {
+      "login": "ericandrewlewis",
+      "name": "Eric Lewis",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1087646?v=4",
+      "profile": "http://www.ericandrewlewis.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
