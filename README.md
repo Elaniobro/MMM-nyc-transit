@@ -1,4 +1,5 @@
 # MTA transit module for Magic Mirror
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 ![](./mmm-nyc-transit.gif)
 ## ℹ️ How to use this module
 1. clone this repo with the following command: `git clone https://github.com/Elaniobro/MMM-nyc-transit.git`
@@ -1840,3 +1841,19 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ### 🙏🏽 Acknowledgments
 * [Eric Lewis](https://github.com/ericandrewlewis/mta-realtime-subway-departures/blob/master/package.json)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="http://elan.trybuch.com"><img src="https://avatars0.githubusercontent.com/u/710847?v=4" width="100px;" alt="Elan Trybuch"/><br /><sub><b>Elan Trybuch</b></sub></a><br /><a href="#design-elaniobro" title="Design">🎨</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=elaniobro" title="Code">💻</a> <a href="#review-elaniobro" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=elaniobro" title="Documentation">📖</a> <a href="#maintenance-elaniobro" title="Maintenance">🚧</a> <a href="#infra-elaniobro" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
