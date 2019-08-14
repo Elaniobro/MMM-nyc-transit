@@ -1,5 +1,5 @@
 # MTA transit module for Magic Mirror
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 ![](./mmm-nyc-transit.gif)
 ## ℹ️ How to use this module
 1. clone this repo with the following command: `git clone https://github.com/Elaniobro/MMM-nyc-transit.git`
@@ -1851,6 +1851,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="http://elan.trybuch.com"><img src="https://avatars0.githubusercontent.com/u/710847?v=4" width="100px;" alt="Elan Trybuch"/><br /><sub><b>Elan Trybuch</b></sub></a><br /><a href="#design-elaniobro" title="Design">🎨</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=elaniobro" title="Code">💻</a> <a href="#review-elaniobro" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=elaniobro" title="Documentation">📖</a> <a href="#maintenance-elaniobro" title="Maintenance">🚧</a> <a href="#infra-elaniobro" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="http://www.ericandrewlewis.com"><img src="https://avatars2.githubusercontent.com/u/1087646?v=4" width="100px;" alt="Eric Lewis"/><br /><sub><b>Eric Lewis</b></sub></a><br /><a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=ericandrewlewis" title="Code">💻</a></td>
   </tr>
 </table>
 
