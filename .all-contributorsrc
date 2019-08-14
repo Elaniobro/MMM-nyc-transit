@@ -1,0 +1,28 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "elaniobro",
+      "name": "Elan Trybuch",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/710847?v=4",
+      "profile": "http://elan.trybuch.com",
+      "contributions": [
+        "design",
+        "code",
+        "review",
+        "doc",
+        "maintenance",
+        "infra"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "MMM-nyc-transit",
+  "projectOwner": "Elaniobro",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
