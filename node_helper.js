@@ -34,6 +34,13 @@ module.exports = NodeHelper.create({
                 var upTown = [];
                 var downTown = [];
 
+                if (responses.length === undefined){
+                    var temp = responses;
+                    responses = [];
+
+                    responses.push(temp);
+                }
+
                 responses.forEach((response) => {
                     response.lines.forEach((line) => {
                         // Southbound Departures
