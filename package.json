@@ -1,6 +1,6 @@
 {
   "name": "MMM-nyc-transit",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "New York City realtime transit module for magic mirror",
   "main": "MMM-nyc-transit.js",
   "scripts": {
@@ -38,5 +38,8 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "dependencies": {
+    "mta-subway-stations": "0.0.2"
   }
 }

@@ -7,6 +7,7 @@
 var NodeHelper = require('node_helper');
 var { createClient } = require('mta-realtime-subway-departures');
 var fs = require('fs-extra');
+var mtaStationIds = require('mta-subway-stations');
 
 module.exports = NodeHelper.create({
     start: function () {
@@ -45,6 +46,12 @@ module.exports = NodeHelper.create({
                     response.lines.forEach((line) => {
                         // Southbound Departures
                         line.departures.S.forEach((i) => {
+                            for (var key in mtaStationIds) {
+                                if (i.destinationStationId === key) {
+                                    i.destinationStationId = mtaStationIds[key]['Complex ID'];
+                                }
+                            }
+
                             upTown.push({
                                 'routeId': i.routeId,
                                 'time': this.getDate(i.time, walkingTime),
@@ -55,6 +62,12 @@ module.exports = NodeHelper.create({
                         });
                         // Nothbound Departures
                         line.departures.N.forEach((i) => {
+                            for (var key in mtaStationIds) {
+                                if (i.destinationStationId === key) {
+                                    i.destinationStationId = mtaStationIds[key]['Complex ID'];
+                                }
+                            }
+
                             downTown.push({
                                 'routeId': i.routeId,
                                 'time': this.getDate(i.time, walkingTime),
