@@ -7,7 +7,6 @@
 Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
     // Default module config.
     defaults: {
-        apikey: 'YOUR_KEY_HERE',
         mtaType: 'train',
         stations: [318, 611],
         updateInterval: 300000, // every 5 min
