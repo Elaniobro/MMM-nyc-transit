@@ -25,10 +25,25 @@
   align-content: center;
 }
 
+.mta__train--list {
+  padding: 0;
+  margin: 0;
+}
+
 .mta__train--item {
+  display: block;
+  text-align: left;
+}
+
+.mta__train--marquee .mta__train--list {
+  list-style: none;
+}
+
+.mta__train--marquee .mta__train--item {
   align-items: center;
   margin: 0 10px;
   padding-left: 10px;
+  display: inline;
 }
 
 .mta__train--logo {
@@ -38,10 +53,10 @@
 
 .mta__train--time,
 .mta__train--destination {
-    display: inline;
+  display: inline;
 }
 
-.mta__train--time{
+.mta__train--time {
   color: #fff;
 }
 

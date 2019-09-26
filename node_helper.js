@@ -21,6 +21,7 @@ module.exports = NodeHelper.create({
         var stations = config.stations;
         var stationIds = {};
         var walkingTime = config.walkingTime;
+        var isList = config.displayType !== 'marquee';
 
         fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
             .then((data)=> {
@@ -78,8 +79,12 @@ module.exports = NodeHelper.create({
                         });
                     });
                 });
+                if(isList) {
+                    self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 9) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 9) }]);
+                } else {
+                    self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3) }]);
+                }
 
-                self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3)}]);
             })
             .catch(err => {
                 throw new Error(err);
