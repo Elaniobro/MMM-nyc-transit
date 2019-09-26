@@ -12,6 +12,7 @@
     header: "Next Train",
     config: {
       apiKey: 'YOUR_KEY_HERE',
+      displayType: 'marquee',
       mtaType: 'train',
       stations: [237,238],
       updateInterval: 300000,
@@ -23,12 +24,18 @@
 
 ## 🛠️ Config
 * `module` the name of the module you are installing.
-* `position` where you want the mmm-nyc-transit module to appear. (**note: works best on top**)
+* `position` where you want the mmm-nyc-transit module to appear.
 * `header` display name for what you want to call your module on screen
+* `displayType` choose between scrolling marquee (default) or list
+  * `list` - shows next 18 trains, 9 for uptown and 9 for downtown
+    * _note: works best on side_
+  * `marquee` - shows next 6 trains, 3 for uptown and 3 for downtown
+    * _note: works best on top_
 * `apiKey` see [mta api Key](#🔑-mta-api-Key) on where to obtain yours.
 * `mtaType` _coming soon, choose bus and or train_
 * `stations` find your [station(s)](#🚆-station) id(s) below.
 * `updateInterval` default is set to 5 minutes
+  * __low interval will result in a timeout for your apiKey via MTA__
 * `walkingTime` allows you to pad the realtime data time, with travel time to the station.
 
 
