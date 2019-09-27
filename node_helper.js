@@ -24,7 +24,7 @@ module.exports = NodeHelper.create({
         var isList = config.displayType !== 'marquee';
 
         fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
-            .then((data)=> {
+            .then((data) => {
                 stationIds = JSON.parse(data);
             })
             .catch((err) => {
@@ -36,7 +36,7 @@ module.exports = NodeHelper.create({
                 var upTown = [];
                 var downTown = [];
 
-                if (responses.length === undefined){
+                if (responses.length === undefined) {
                     var temp = responses;
                     responses = [];
 
@@ -48,10 +48,11 @@ module.exports = NodeHelper.create({
                         // Southbound Departures
                         line.departures.S.forEach((i) => {
                             for (var key in mtaStationIds) {
-                                if (i.destinationStationId === key) {
+                                if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
+
                             upTown.push({
                                 'routeId': i.routeId,
                                 'time': this.getDate(i.time, walkingTime),
@@ -63,7 +64,7 @@ module.exports = NodeHelper.create({
                         // Nothbound Departures
                         line.departures.N.forEach((i) => {
                             for (var key in mtaStationIds) {
-                                if (i.destinationStationId === key) {
+                                if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
@@ -78,7 +79,7 @@ module.exports = NodeHelper.create({
                         });
                     });
                 });
-                if(isList) {
+                if (isList) {
                     self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0) }, { upTown: upTown.filter(train => train.time > 0) }]);
                 } else {
                     self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3) }]);
