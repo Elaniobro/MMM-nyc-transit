@@ -27,7 +27,7 @@
 * `position` where you want the mmm-nyc-transit module to appear.
 * `header` display name for what you want to call your module on screen
 * `displayType` choose between scrolling marquee (default) or list
-  * `list` - shows next 18 trains, 9 for uptown and 9 for downtown
+  * `list` - shows next 3 trains for each line, both uptown and downtown
     * _note: works best on side_
   * `marquee` - shows next 6 trains, 3 for uptown and 3 for downtown
     * _note: works best on top_
