@@ -1,6 +1,6 @@
 {
   "name": "MMM-nyc-transit",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "New York City realtime transit module for magic mirror",
   "main": "MMM-nyc-transit.js",
   "scripts": {
