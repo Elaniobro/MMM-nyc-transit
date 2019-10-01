@@ -37,6 +37,16 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "dahlio",
+      "name": "dahlio",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/52632238?v=4",
+      "profile": "https://github.com/dahlio",
+      "contributions": [
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
