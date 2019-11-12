@@ -1,5 +1,5 @@
 # MTA transit module for Magic Mirror
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 ![](./mmm-nyc-transit.gif)
 ## ℹ️ How to use this module
 1. clone this repo with the following command: `git clone https://github.com/Elaniobro/MMM-nyc-transit.git`
@@ -1861,6 +1861,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.ericandrewlewis.com"><img src="https://avatars2.githubusercontent.com/u/1087646?v=4" width="100px;" alt="Eric Lewis"/><br /><sub><b>Eric Lewis</b></sub></a><br /><a href="https://github.com/Elaniobro/MMM-nyc-transit/commits?author=ericandrewlewis" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Kendiggity973"><img src="https://avatars2.githubusercontent.com/u/54965526?v=4" width="100px;" alt="Kendiggity973"/><br /><sub><b>Kendiggity973</b></sub></a><br /><a href="#ideas-Kendiggity973" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/issues?q=author%3AKendiggity973" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/dahlio"><img src="https://avatars0.githubusercontent.com/u/52632238?v=4" width="100px;" alt="dahlio"/><br /><sub><b>dahlio</b></sub></a><br /><a href="#ideas-dahlio" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Elaniobro/MMM-nyc-transit/issues?q=author%3Adahlio" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/jon7187"><img src="https://avatars1.githubusercontent.com/u/744623?v=4" width="100px;" alt="jon7187"/><br /><sub><b>jon7187</b></sub></a><br /><a href="https://github.com/Elaniobro/MMM-nyc-transit/issues?q=author%3Ajon7187" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
