@@ -80,7 +80,7 @@ module.exports = NodeHelper.create({
                 });
 
                 if (isList) {
-                  self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0) }, { upTown: upTown.filter(train => train.time > 0) }]);
+                    self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0) }, { upTown: upTown.filter(train => train.time > 0) }]);
                 } else {
                     self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3) }]);
                 }
