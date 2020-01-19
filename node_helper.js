@@ -47,7 +47,6 @@ module.exports = NodeHelper.create({
                         // Southbound Departures
                         line.departures.S.forEach((i) => {
                             for (var key in mtaStationIds) {
-                                // if(i.destinationStationId === 'undefined') return
                                 if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
