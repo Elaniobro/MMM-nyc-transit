@@ -42,7 +42,6 @@ module.exports = NodeHelper.create({
 
                     responses.push(temp);
                 }
-
                 responses.forEach((response) => {
                     response.lines.forEach((line) => {
                         // Southbound Departures
@@ -52,29 +51,35 @@ module.exports = NodeHelper.create({
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
-                            upTown.push({
-                                'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime),
-                                'destination': (i.destinationStationId === '281') ?
-                                    stationIds['606'].name :
-                                    stationIds[i.destinationStationId].name
-                            });
+
+                            if(i.destinationStationId !== undefined) {
+                                upTown.push({
+                                    'routeId': i.routeId,
+                                    'time': this.getDate(i.time, walkingTime),
+                                    'destination': (i.destinationStationId === '281') ?
+                                        stationIds['606'].name :
+                                        stationIds[i.destinationStationId].name
+                                });
+                            }
                         });
                         // Nothbound Departures
                         line.departures.N.forEach((i) => {
                             for (var key in mtaStationIds) {
+
                                 if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
 
-                            downTown.push({
-                                'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime),
-                                'destination': (i.destinationStationId === '281') ?
-                                    stationIds['606'].name :
-                                    stationIds[i.destinationStationId].name
-                            });
+                            if(i.destinationStationId !== undefined) {
+                                downTown.push({
+                                    'routeId': i.routeId,
+                                    'time': this.getDate(i.time, walkingTime),
+                                    'destination': (i.destinationStationId === '281') ?
+                                        stationIds['606'].name :
+                                        stationIds[i.destinationStationId].name
+                                });
+                            }
                         });
                     });
                 });
