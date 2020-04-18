@@ -10,9 +10,25 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
     defaults: {
         displayType: 'marquee',
         mtaType: 'train',
-        stations: [318, 611],
-        updateInterval: 300000, // every 5 min
-        walkingTime: 0,
+        stations: [
+            {
+                stationId: 237,
+                walkingTime: 5,
+                dir: {
+                    upTown: true,
+                    downTown: true
+                }
+            },
+            {
+                stationId: 238,
+                walkingTime: 5,
+                dir: {
+                    upTown: true,
+                    downTown: true
+                }
+            }
+        ],
+        updateInterval: 300000 // every 5 min
     },
 
     getStyles: function () {
