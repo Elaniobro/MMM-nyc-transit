@@ -18,9 +18,11 @@ module.exports = NodeHelper.create({
         var apiKey = config.apiKey;
         var client = createClient(apiKey);
         var self = this;
-        var stations = config.stations;
+        var stations = config.stations.map(obj => obj.stationId);
         var stationIds = {};
-        var walkingTime = config.walkingTime;
+        var walkingTime = config.stations.map(obj => obj.walkingTime);
+        var dirUpTown = config.stations.map(obj => obj.dir.upTown);
+        var dirDownTown = config.stations.map(obj => obj.dir.downTown);
         var isList = config.displayType !== 'marquee';
 
         fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
