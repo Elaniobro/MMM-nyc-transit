@@ -44,7 +44,8 @@ module.exports = NodeHelper.create({
 
                     responses.push(temp);
                 }
-                responses.forEach((response) => {
+
+                responses.forEach((response, n) => {
                     response.lines.forEach((line) => {
                         // Southbound Departures
                         line.departures.S.forEach((i) => {
@@ -54,16 +55,18 @@ module.exports = NodeHelper.create({
                                 }
                             }
 
-                            if(i.destinationStationId !== undefined) {
+                            if(i.destinationStationId !== undefined && dirUpTown[n]) {
                                 upTown.push({
                                     'routeId': i.routeId,
-                                    'time': this.getDate(i.time, walkingTime),
+                                    'time': this.getDate(i.time, walkingTime[n]),
                                     'destination': (i.destinationStationId === '281') ?
                                         stationIds['606'].name :
                                         stationIds[i.destinationStationId].name
                                 });
                             }
+
                         });
+
                         // Nothbound Departures
                         line.departures.N.forEach((i) => {
                             for (var key in mtaStationIds) {
@@ -73,15 +76,16 @@ module.exports = NodeHelper.create({
                                 }
                             }
 
-                            if(i.destinationStationId !== undefined) {
+                            if (i.destinationStationId !== undefined && dirDownTown[n]) {
                                 downTown.push({
                                     'routeId': i.routeId,
-                                    'time': this.getDate(i.time, walkingTime),
+                                    'time': this.getDate(i.time, walkingTime[n]),
                                     'destination': (i.destinationStationId === '281') ?
                                         stationIds['606'].name :
                                         stationIds[i.destinationStationId].name
                                 });
                             }
+
                         });
                     });
                 });
