@@ -14,9 +14,25 @@
       apiKey: 'YOUR_KEY_HERE',
       displayType: 'marquee',
       mtaType: 'train',
-      stations: [237,238],
-      updateInterval: 300000,
-      walkingTime: 5,
+      stations: [
+        {
+          stationId: 237,
+          walkingTime: 5,
+          dir: {
+              upTown: false,
+              downTown: true
+          }
+        },
+        {
+          stationId: 177,
+          walkingTime: 5,
+          dir: {
+            upTown: true,
+            downTown: false
+          }
+        }
+      ],
+      updateInterval: 300000
     }
   }
 ```
@@ -33,10 +49,14 @@
     * _note: works best on top_
 * `apiKey` see [mta api Key](#🔑-mta-api-Key) on where to obtain yours.
 * `mtaType` _coming soon, choose bus and or train_
-* `stations` find your [station(s)](#🚆-station) id(s) below.
+* `stations` array to store each station config.
+  * `stationId` find your [station(s)](#🚆-station) id(s) below.
+  * `walkingTime` allows you to pad the realtime data time, with travel time to the station.
+  * `dir` object to hold which directions of the train to show
+    * `upTown` boolean value
+    * `downTown` boolean value
 * `updateInterval` default is set to 5 minutes
   * __low interval will result in a timeout for your apiKey via MTA__
-* `walkingTime` allows you to pad the realtime data time, with travel time to the station.
 
 
 ## 🔑 MTA API Key:

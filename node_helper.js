@@ -18,9 +18,11 @@ module.exports = NodeHelper.create({
         var apiKey = config.apiKey;
         var client = createClient(apiKey);
         var self = this;
-        var stations = config.stations;
+        var stations = config.stations.map(obj => obj.stationId);
         var stationIds = {};
-        var walkingTime = config.walkingTime;
+        var walkingTime = config.stations.map(obj => obj.walkingTime);
+        var dirUpTown = config.stations.map(obj => obj.dir.upTown);
+        var dirDownTown = config.stations.map(obj => obj.dir.downTown);
         var isList = config.displayType !== 'marquee';
 
         fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
@@ -43,7 +45,7 @@ module.exports = NodeHelper.create({
                     responses.push(temp);
                 }
 
-                responses.forEach((response) => {
+                responses.forEach((response, n) => {
                     response.lines.forEach((line) => {
                         // Southbound Departures
                         line.departures.S.forEach((i) => {
@@ -52,35 +54,44 @@ module.exports = NodeHelper.create({
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
-                            upTown.push({
-                                'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime),
-                                'destination': (i.destinationStationId === '281') ?
-                                    stationIds['606'].name :
-                                    stationIds[i.destinationStationId].name
-                            });
+
+                            if(i.destinationStationId !== undefined && dirUpTown[n]) {
+                                upTown.push({
+                                    'routeId': i.routeId,
+                                    'time': this.getDate(i.time, walkingTime[n]),
+                                    'destination': (i.destinationStationId === '281') ?
+                                        stationIds['606'].name :
+                                        stationIds[i.destinationStationId].name
+                                });
+                            }
+
                         });
+
                         // Nothbound Departures
                         line.departures.N.forEach((i) => {
                             for (var key in mtaStationIds) {
+
                                 if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                                     i.destinationStationId = mtaStationIds[key]['Complex ID'];
                                 }
                             }
 
-                            downTown.push({
-                                'routeId': i.routeId,
-                                'time': this.getDate(i.time, walkingTime),
-                                'destination': (i.destinationStationId === '281') ?
-                                    stationIds['606'].name :
-                                    stationIds[i.destinationStationId].name
-                            });
+                            if (i.destinationStationId !== undefined && dirDownTown[n]) {
+                                downTown.push({
+                                    'routeId': i.routeId,
+                                    'time': this.getDate(i.time, walkingTime[n]),
+                                    'destination': (i.destinationStationId === '281') ?
+                                        stationIds['606'].name :
+                                        stationIds[i.destinationStationId].name
+                                });
+                            }
+
                         });
                     });
                 });
 
                 if (isList) {
-                  self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0) }, { upTown: upTown.filter(train => train.time > 0) }]);
+                    self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0) }, { upTown: upTown.filter(train => train.time > 0) }]);
                 } else {
                     self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter(train => train.time > 0).slice(0, 3) }, { upTown: upTown.filter(train => train.time > 0).slice(0, 3) }]);
                 }
