@@ -54,7 +54,9 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/744623?v=4",
       "profile": "https://github.com/jon7187",
       "contributions": [
-        "bug"
+        "bug",
+        "ideas",
+        "example"
       ]
     }
   ],
@@ -62,5 +64,6 @@
   "projectName": "MMM-nyc-transit",
   "projectOwner": "Elaniobro",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
