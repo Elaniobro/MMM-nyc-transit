@@ -57,11 +57,13 @@ module.exports = NodeHelper.create({
 
                             if(i.destinationStationId !== undefined && dirUpTown[n]) {
                                 upTown.push({
-                                    'routeId': i.routeId,
-                                    'time': this.getDate(i.time, walkingTime[n]),
-                                    'destination': (i.destinationStationId === '281') ?
-                                        stationIds['606'].name :
-                                        stationIds[i.destinationStationId].name
+                                    routeId: i.routeId,
+                                    time: this.getDate(i.time, walkingTime[n]),
+                                    destination:
+                                        i.destinationStationId === '281'
+                                            ? stationIds['606'].name
+                                            : stationIds[i.destinationStationId].name,
+                                    walkingTime: walkingTime[n],
                                 });
                             }
 
@@ -78,11 +80,13 @@ module.exports = NodeHelper.create({
 
                             if (i.destinationStationId !== undefined && dirDownTown[n]) {
                                 downTown.push({
-                                    'routeId': i.routeId,
-                                    'time': this.getDate(i.time, walkingTime[n]),
-                                    'destination': (i.destinationStationId === '281') ?
-                                        stationIds['606'].name :
-                                        stationIds[i.destinationStationId].name
+                                    routeId: i.routeId,
+                                    time: this.getDate(i.time, walkingTime[n]),
+                                    destination:
+                                        i.destinationStationId === '281'
+                                            ? stationIds['606'].name
+                                            : stationIds[i.destinationStationId].name,
+                                    walkingTime: walkingTime[n],
                                 });
                             }
 
