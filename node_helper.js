@@ -40,6 +40,7 @@ module.exports = NodeHelper.create({
 
         if (responses.length === undefined) {
           var temp = responses
+
           responses = []
 
           responses.push(temp)
@@ -60,9 +61,9 @@ module.exports = NodeHelper.create({
                   routeId: i.routeId,
                   time: this.getDate(i.time, walkingTime[n]),
                   destination:
-                                        i.destinationStationId === '281'
-                                          ? stationIds['606'].name
-                                          : stationIds[i.destinationStationId].name,
+                    i.destinationStationId === '281'
+                      ? stationIds['606'].name
+                      : stationIds[i.destinationStationId].name,
                   walkingTime: walkingTime[n],
                 })
               }
@@ -83,9 +84,9 @@ module.exports = NodeHelper.create({
                   routeId: i.routeId,
                   time: this.getDate(i.time, walkingTime[n]),
                   destination:
-                                        i.destinationStationId === '281'
-                                          ? stationIds['606'].name
-                                          : stationIds[i.destinationStationId].name,
+                    i.destinationStationId === '281'
+                      ? stationIds['606'].name
+                      : stationIds[i.destinationStationId].name,
                   walkingTime: walkingTime[n],
                 })
               }

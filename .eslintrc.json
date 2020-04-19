@@ -34,6 +34,10 @@
             "error",
             "never"
         ],
+        "newline-after-var": [
+            "error",
+            "always"
+        ],
         "no-console": [
             "error",
             {
@@ -41,6 +45,21 @@
                     "warn",
                     "error"
                 ]
+            }
+        ],
+        "no-trailing-spaces": [
+            "error",
+            {
+                "ignoreComments": true,
+                "skipBlankLines": true
+            }
+        ],
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": "return"
             }
         ]
     }

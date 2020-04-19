@@ -57,6 +57,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
           var trainTimes = document.querySelectorAll(
             '.mta__train--time span'
           )
+
           trainTimes.forEach((train) => {
             // Get the train time as a Number type
             var duration = Number(train.textContent
@@ -99,6 +100,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     if (data) {
       var downTown = data[0].downTown
       var upTown = data[1].upTown
+
       if (Object.keys(data).length === 0 && data.constructor === Object) {
         return wrapper
       }
@@ -108,6 +110,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
           downTown: [],
           upTown: [],
         }
+
         downTown.forEach((train) => {
           if (!trainHashMap.downTown[train.routeId]) {
             trainHashMap.downTown[train.routeId] = {
@@ -210,6 +213,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
         }
 
         wrapper.appendChild(list)
+
         return wrapper
       } else {
         for (var upMarKey in upTown) {
@@ -262,6 +266,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
           }
           var downMarHtml = ''
           var downTownMarListItem = document.createElement('span')
+
           downMarHtml =
             downMarHtml +
             '<span class="mta mta__train mta__train--logo mta__train--line-' +
@@ -298,6 +303,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     }
     // observer mutation on targetNode with config obj
     observer.observe(targetNode, config)
+
     return wrapper
   },
 
