@@ -14,9 +14,13 @@
         "sourceType": "module"
     },
     "rules": {
+        "arrow-parens": [
+            "error",
+            "always"
+        ],
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",
@@ -28,6 +32,10 @@
         ],
         "semi": [
             "error",
+            "never"
+        ],
+        "newline-after-var": [
+            "error",
             "always"
         ],
         "no-console": [
@@ -37,6 +45,21 @@
                     "warn",
                     "error"
                 ]
+            }
+        ],
+        "no-trailing-spaces": [
+            "error",
+            {
+                "ignoreComments": true,
+                "skipBlankLines": true
+            }
+        ],
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": "return"
             }
         ]
     }
