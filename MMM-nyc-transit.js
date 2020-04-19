@@ -35,20 +35,20 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
   },
 
   getStyles: function () {
-    return ['MMM-nyc-transit.css'];
+    return ['MMM-nyc-transit.css']
   },
 
   start: function () {
-    this.getDepartures();
-    this.scheduleUpdate();
+    this.getDepartures()
+    this.scheduleUpdate()
   },
   getDom: function () {
     // Set up targetnode based on position set in config
     var targetNode = document.querySelector(
       '.region.' + this.config.position.split('_').join('.') + ' .container'
-    );
+    )
     // set up mutation observer config options
-    var config = { attributes: true, childList: true, subtree: true };
+    var config = { attributes: true, childList: true, subtree: true }
     // call back function for mutation observer
         var callback = function (mutationsList, observer) { /*eslint-disable-line*/
       // Use traditional 'for loops' for IE 11
@@ -56,75 +56,75 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
         if (mutation.type === 'childList') {
           var trainTimes = document.querySelectorAll(
             '.mta__train--time span'
-          );
+          )
           trainTimes.forEach((train) => {
             // Get the train time as a Number type
             var duration = Number(train.textContent
               .split(' ')[1]
-              .split('min')[0]);
-            var timer = duration * 60;
-            var minutes;
-            var seconds;
+              .split('min')[0])
+            var timer = duration * 60
+            var minutes
+            var seconds
 
             // Compare duration to walkingtime
             if( duration <= Number(train.dataset.walkingTime)){
               setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10)
 
                 // minutes = minutes < 10 ? minutes : minutes;
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-                train.textContent = minutes + ':' + seconds + 'min';
+                seconds = seconds < 10 ? '0' + seconds : seconds
+                train.textContent = minutes + ':' + seconds + 'min'
 
                 if (--timer < 0) {
-                  timer = duration;
+                  timer = duration
                 }
-              }, 1000);
+              }, 1000)
             }
-          });
+          })
         }
       }
-    };
-    var observer = new MutationObserver(callback);
-    var data = this.result; // the data is not ready
-    var wrapper = document.createElement('div');
-    var marquee = document.createElement('marquee');
-    var list = document.createElement('ul');
-    var isList = this.config.displayType !== 'marquee';
+    }
+    var observer = new MutationObserver(callback)
+    var data = this.result // the data is not ready
+    var wrapper = document.createElement('div')
+    var marquee = document.createElement('marquee')
+    var list = document.createElement('ul')
+    var isList = this.config.displayType !== 'marquee'
 
-    wrapper.className = 'MMM-nyc-transit';
-    list.className = 'mta__train--list';
-    marquee.className = 'mta__train--marquee';
+    wrapper.className = 'MMM-nyc-transit'
+    list.className = 'mta__train--list'
+    marquee.className = 'mta__train--marquee'
 
     if (data) {
-      var downTown = data[0].downTown;
-      var upTown = data[1].upTown;
+      var downTown = data[0].downTown
+      var upTown = data[1].upTown
       if (Object.keys(data).length === 0 && data.constructor === Object) {
-        return wrapper;
+        return wrapper
       }
 
       if (isList) {
         var trainHashMap = {
           downTown: [],
           upTown: [],
-        };
+        }
         downTown.forEach((train) => {
           if (!trainHashMap.downTown[train.routeId]) {
             trainHashMap.downTown[train.routeId] = {
               time: [train.time],
               dest: train.destination,
               walkingTime: train.walkingTime
-            };
+            }
           } else {
             trainHashMap.downTown[train.routeId].time.push(
               train.time
-            );
+            )
           }
-        });
+        })
 
         for (var dKey in trainHashMap.downTown) {
-          var dHtml = '';
-          var downTownListItem = document.createElement('li');
+          var dHtml = ''
+          var downTownListItem = document.createElement('li')
 
           dHtml =
                         dHtml +
@@ -152,10 +152,10 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
                                     'min</span>'
                           ) +
                         " </span>"; /*eslint-disable-line*/
-          downTownListItem.className = 'mta__train--item';
-          downTownListItem.innerHTML = dHtml;
+          downTownListItem.className = 'mta__train--item'
+          downTownListItem.innerHTML = dHtml
 
-          list.appendChild(downTownListItem);
+          list.appendChild(downTownListItem)
         }
 
         upTown.forEach((train) => {
@@ -164,17 +164,17 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
               time: [train.time],
               dest: train.destination,
               walkingTime: train.walkingTime
-            };
+            }
           } else {
             trainHashMap.upTown[train.routeId].time.push(
               train.time
-            );
+            )
           }
-        });
+        })
 
         for (var uKey in trainHashMap.upTown) {
-          var uHtml = '';
-          var upTownListItem = document.createElement('li');
+          var uHtml = ''
+          var upTownListItem = document.createElement('li')
 
           uHtml =
                         uHtml +
@@ -203,24 +203,24 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
                           ) +
                         " </span>"; /*eslint-disable-line*/
 
-          upTownListItem.className = 'mta__train--item';
-          upTownListItem.innerHTML = uHtml;
+          upTownListItem.className = 'mta__train--item'
+          upTownListItem.innerHTML = uHtml
 
-          list.appendChild(upTownListItem);
+          list.appendChild(upTownListItem)
         }
 
-        wrapper.appendChild(list);
-        return wrapper;
+        wrapper.appendChild(list)
+        return wrapper
       } else {
         for (var upMarKey in upTown) {
           if (
             !Object.prototype.hasOwnProperty.call(upTown, upMarKey)
           ) {
-            continue;
+            continue
           }
 
-          var upMarHtml = '';
-          var upTownMarListItem = document.createElement('span');
+          var upMarHtml = ''
+          var upTownMarListItem = document.createElement('span')
 
           upMarHtml =
                         upMarHtml +
@@ -246,9 +246,9 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
 
                     (" </span>"); /*eslint-disable-line*/
 
-          upTownMarListItem.className = 'mta__train--item';
-          upTownMarListItem.innerHTML = upMarHtml;
-          marquee.appendChild(upTownMarListItem);
+          upTownMarListItem.className = 'mta__train--item'
+          upTownMarListItem.innerHTML = upMarHtml
+          marquee.appendChild(upTownMarListItem)
         }
 
         for (var downMarKey in downTown) {
@@ -258,10 +258,10 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
               downMarKey
             )
           ) {
-            continue;
+            continue
           }
-          var downMarHtml = '';
-          var downTownMarListItem = document.createElement('span');
+          var downMarHtml = ''
+          var downTownMarListItem = document.createElement('span')
           downMarHtml =
                         downMarHtml +
                         '<span class="mta mta__train mta__train--logo mta__train--line-' +
@@ -282,62 +282,62 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
                         downMarKey.toLowerCase() +
                         '\'> ' +
                         downTown[downMarKey].time +
-                        'min</span>';
+                        'min</span>'
 
                         " </span>"; /*eslint-disable-line*/
 
-          downTownMarListItem.className = 'mta__train--item';
-          downTownMarListItem.innerHTML = downMarHtml;
-          marquee.appendChild(downTownMarListItem);
+          downTownMarListItem.className = 'mta__train--item'
+          downTownMarListItem.innerHTML = downMarHtml
+          marquee.appendChild(downTownMarListItem)
         }
 
-        wrapper.appendChild(marquee);
+        wrapper.appendChild(marquee)
 
-        return wrapper;
+        return wrapper
       }
     }
     // observer mutation on targetNode with config obj
-    observer.observe(targetNode, config);
-    return wrapper;
+    observer.observe(targetNode, config)
+    return wrapper
   },
 
   getDepartures: function () {
-    var config = this.config;
+    var config = this.config
 
-    this.sendSocketNotification('GET_DEPARTURES', config);
+    this.sendSocketNotification('GET_DEPARTURES', config)
   },
 
   scheduleUpdate: function (delay) {
-    var loadTime = this.config.updateInterval;
-    var that = this;
+    var loadTime = this.config.updateInterval
+    var that = this
 
     if (typeof delay !== 'undefined' && delay >= 0) {
-      loadTime = delay;
+      loadTime = delay
     }
 
     setInterval(function () {
-      that.getDepartures();
-    }, loadTime);
+      that.getDepartures()
+    }, loadTime)
   },
 
   startTimer: function (duration, display) {
     var timer = duration,
       minutes,
-      seconds;
+      seconds
 
     setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
+      minutes = parseInt(timer / 60, 10)
+      seconds = parseInt(timer % 60, 10)
 
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
+      minutes = minutes < 10 ? '0' + minutes : minutes
+      seconds = seconds < 10 ? '0' + seconds : seconds
 
-      display.textContent = minutes + ':' + seconds;
+      display.textContent = minutes + ':' + seconds
 
       if (--timer < 0) {
-        timer = duration;
+        timer = duration
       }
-    }, 1000);
+    }, 1000)
   },
 
   socketNotificationReceived: function (notification, payload) {
@@ -346,17 +346,17 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
       console.log(
         'socketNotificationReceived: "TRAIN_TABLE": ',
         this.result
-      );
+      )
 
-      this.result = payload;
+      this.result = payload
       this.updateDom(
         self.config.fadeSpeed
-      );
+      )
     } else if (notification === 'DOM_OBJECTS_CREATED') {
       // eslint-disable-next-line no-console
       console.log(
         'Dom Objects Created'
-      );
+      )
     }
   },
-});
+})
