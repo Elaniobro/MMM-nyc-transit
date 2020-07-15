@@ -6,6 +6,7 @@
  */
 
 Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
+  resutl: {},
   // Default module config.
   defaults: {
     displayType: 'marquee',
@@ -96,6 +97,10 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     wrapper.className = 'MMM-nyc-transit'
     list.className = 'mta__train--list'
     marquee.className = 'mta__train--marquee'
+
+    if (Object.keys(data).length === 0 && data.constructor === Object) {
+        return wrapper;
+    }
 
     if (data) {
       var downTown = data[0].downTown
@@ -355,9 +360,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
       )
 
       this.result = payload
-      this.updateDom(
-        self.config.fadeSpeed
-      )
+      this.updateDom()
     } else if (notification === 'DOM_OBJECTS_CREATED') {
       // eslint-disable-next-line no-console
       console.log(
