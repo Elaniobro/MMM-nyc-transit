@@ -1,5 +1,5 @@
 # 🚆 Station List: <span style="font-size: 32px;color:#999">*_id & name_</span>
-```json
+```javascript
 stations: {
   {
     "id": : 119,
