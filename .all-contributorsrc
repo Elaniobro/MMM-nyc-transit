@@ -58,6 +58,16 @@
         "ideas",
         "example"
       ]
+    },
+    {
+      "login": "kurtraschke",
+      "name": "Kurt Raschke",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/118546?v=4",
+      "profile": "https://kurtraschke.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
