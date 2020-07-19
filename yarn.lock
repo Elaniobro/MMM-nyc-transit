@@ -833,10 +833,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mta-realtime-subway-departures@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/mta-realtime-subway-departures/-/mta-realtime-subway-departures-0.0.13.tgz#814e0e2b3ed306920aec4136df41e13d5bd16573"
-  integrity sha512-tM1ks1uxxW23dpsaXBi+JDnqWw7xSYypFK6IVqafsLAgfDCo8/BY5gvvmPzTJUlxo+h+PGpbq8mqXR48+KuClg==
+mta-realtime-subway-departures@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mta-realtime-subway-departures/-/mta-realtime-subway-departures-1.0.0.tgz#a02f505513d5ce4929ea4ce4f1594bf5c66ab9db"
+  integrity sha512-VIu+4oYomJP26SZ330gyGnKNZET/RDReOsEu25kMzlv8IAm9jf3durLy+RQQ6YhToazAcXXLjMiTor6yR7/jWQ==
   dependencies:
     array-unique "^0.3.2"
     csv-parse "^2.5.0"
