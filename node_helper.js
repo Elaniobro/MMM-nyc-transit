@@ -91,7 +91,79 @@ module.exports = NodeHelper.create({
                   walkingTime: walkingTime[n],
                 })
               }
+                responses.forEach((response, n) => {
+                    response.lines.forEach(line => {
+                        // Southbound Departures
+                        line.departures.S.forEach(i => {
+                            for (var key in mtaStationIds) {
+                                if (
+                                    i.destinationStationId ===
+                                    mtaStationIds[key]["Station ID"]
+                                ) {
+                                    i.destinationStationId =
+                                        mtaStationIds[key]["Complex ID"];
+                                }
+                            }
 
+                            if (
+                                i.destinationStationId !== undefined &&
+                                dirUpTown[n]
+                            ) {
+                                upTown.push({
+                                    routeId: i.routeId,
+                                    time: this.getDate(i.time, walkingTime[n]),
+                                    destination:
+                                        i.destinationStationId === "281"
+                                            ? stationIds["606"].name
+                                            : stationIds[i.destinationStationId]
+                                                  .name,
+                                    walkingTime: walkingTime[n]
+                                });
+                            }
+                        });
+
+                        // Nothbound Departures
+                        line.departures.N.forEach(i => {
+                            for (var key in mtaStationIds) {
+                                if (
+                                    i.destinationStationId ===
+                                    mtaStationIds[key]["Station ID"]
+                                ) {
+                                    i.destinationStationId =
+                                        mtaStationIds[key]["Complex ID"];
+                                }
+                            }
+
+                            if (
+                                i.destinationStationId !== undefined &&
+                                dirDownTown[n]
+                            ) {
+                                downTown.push({
+                                    routeId: i.routeId,
+                                    time: this.getDate(i.time, walkingTime[n]),
+                                    destination:
+                                        i.destinationStationId === "281"
+                                            ? stationIds["606"].name
+                                            : stationIds[i.destinationStationId]
+                                                  .name,
+                                    walkingTime: walkingTime[n]
+                                });
+                            }
+                        });
+                    });
+                });
+
+                if (isList) {
+                    self.sendSocketNotification("TRAIN_TABLE", [
+                        { downTown: downTown.filter(train => train.time > 0) },
+                        { upTown: upTown.filter(train => train.time > 0) }
+                    ]);
+                } else {
+                    self.sendSocketNotification("TRAIN_TABLE", [
+                        { downTown: downTown.filter(train => train.time > 0).slice(0, 3) },
+                        { upTown: upTown.filter(train => train.time > 0).slice(0, 3) }
+                    ]);
+                }
             })
           })
         })
