@@ -5,9 +5,7 @@
  * MIT Licensed.
  */
 
-// eslint-disable-next-line no-undef
-Module.register('MMM-nyc-transit', {
-    /*eslint-disable-line*/
+Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
   // Default module config.
   defaults: {
     displayType: 'marquee',
@@ -51,9 +49,7 @@ Module.register('MMM-nyc-transit', {
     // set up mutation observer config options
     var config = { attributes: true, childList: true, subtree: true }
     // call back function for mutation observer
-    // eslint-disable-next-line no-unused-vars
-    var callback = function (mutationsList, observer) {
-            /*eslint-disable-line*/
+    var callback = function (mutationsList, observer) { /*eslint-disable-line*/
       // Use traditional 'for loops' for IE 11
       for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
