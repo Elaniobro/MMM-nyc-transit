@@ -11,7 +11,7 @@ var mtaStationIds = require('mta-subway-stations')
 
 module.exports = NodeHelper.create({
   start: function () {
-        console.log(this.name + ' helper method started...'); /*eslint-disable-line*/
+    console.log(this.name + ' helper method started...'); /*eslint-disable-line*/
   },
 
   getDepartures: function (config) {
@@ -24,6 +24,7 @@ module.exports = NodeHelper.create({
     var dirUpTown = config.stations.map((obj) => obj.dir.upTown)
     var dirDownTown = config.stations.map((obj) => obj.dir.downTown)
     var isList = config.displayType !== 'marquee'
+
 
     fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
       .then((data) => {
@@ -98,11 +99,12 @@ module.exports = NodeHelper.create({
         if (isList) {
           self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter((train) => train.time > 0) }, { upTown: upTown.filter((train) => train.time > 0) }])
         } else {
-          self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter((train) => train.time > 0).slice(0, 3) }, { upTown: upTown.filter((train) => train.time > 0).slice(0, 3) }])
+          self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter((train) => train.time > 0) }, { upTown: upTown.filter((train) => train.time > 0) }])
         }
 
       })
       .catch((err) => {
+        console.log({ err })
         throw new Error(err)
       })
   },

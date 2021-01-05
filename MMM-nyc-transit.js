@@ -42,6 +42,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     this.getDepartures()
     this.scheduleUpdate()
   },
+
   getDom: function () {
     // Set up targetnode based on position set in config
     var targetNode = document.querySelector(
@@ -57,8 +58,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
           var trainTimes = document.querySelectorAll(
             '.mta__train--time span'
           )
-
-          trainTimes.forEach((train) => {
+          trainTimes.forEach((train, i) => {
             // Get the train time as a Number type
             var duration = Number(train.textContent
               .split(' ')[1]
@@ -112,14 +112,14 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
         }
 
         downTown.forEach((train) => {
-          if (!trainHashMap.downTown[train.routeId]) {
-            trainHashMap.downTown[train.routeId] = {
+          if (!trainHashMap.downTown[this.isSIR(train.routeId)]) {
+            trainHashMap.downTown[this.isSIR(train.routeId)] = {
               time: [train.time],
               dest: train.destination,
               walkingTime: train.walkingTime
             }
           } else {
-            trainHashMap.downTown[train.routeId].time.push(
+            trainHashMap.downTown[this.isSIR(train.routeId)].time.push(
               train.time
             )
           }
@@ -128,6 +128,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
         for (var dKey in trainHashMap.downTown) {
           var dHtml = ''
           var downTownListItem = document.createElement('li')
+
 
           dHtml =
             dHtml +
@@ -162,14 +163,15 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
         }
 
         upTown.forEach((train) => {
-          if (!trainHashMap.upTown[train.routeId]) {
-            trainHashMap.upTown[train.routeId] = {
+
+          if (!trainHashMap.upTown[this.isSIR(train.routeId)]) {
+            trainHashMap.upTown[this.isSIR(train.routeId)] = {
               time: [train.time],
               dest: train.destination,
               walkingTime: train.walkingTime
             }
           } else {
-            trainHashMap.upTown[train.routeId].time.push(
+            trainHashMap.upTown[this.isSIR(train.routeId)].time.push(
               train.time
             )
           }
@@ -307,6 +309,10 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     return wrapper
   },
 
+  isSIR: function(id) {
+    return (id === "SI" ? "SIR" : id === 'SS' ? 'SIR': id);
+  },
+
   getDepartures: function () {
     var config = this.config
 
@@ -324,26 +330,6 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
     setInterval(function () {
       that.getDepartures()
     }, loadTime)
-  },
-
-  startTimer: function (duration, display) {
-    var timer = duration,
-      minutes,
-      seconds
-
-    setInterval(function () {
-      minutes = parseInt(timer / 60, 10)
-      seconds = parseInt(timer % 60, 10)
-
-      minutes = minutes < 10 ? '0' + minutes : minutes
-      seconds = seconds < 10 ? '0' + seconds : seconds
-
-      display.textContent = minutes + ':' + seconds
-
-      if (--timer < 0) {
-        timer = duration
-      }
-    }, 1000)
   },
 
   socketNotificationReceived: function (notification, payload) {
