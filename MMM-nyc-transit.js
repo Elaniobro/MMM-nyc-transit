@@ -55,10 +55,9 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
       // Use traditional 'for loops' for IE 11
       for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
-          var trainTimes = document.querySelectorAll(
-            '.mta__train--time span'
-          )
-          trainTimes.forEach((train, i) => {
+          var trainTimes = document.querySelectorAll('.mta__train--time span')
+
+          trainTimes.forEach((train) => {
             // Get the train time as a Number type
             var duration = Number(train.textContent
               .split(' ')[1]
@@ -310,7 +309,7 @@ Module.register('MMM-nyc-transit', {  /*eslint-disable-line*/
   },
 
   isSIR: function(id) {
-    return (id === "SI" ? "SIR" : id === 'SS' ? 'SIR': id);
+    return (id === 'SI' ? 'SIR' : id === 'SS' ? 'SIR': id)
   },
 
   getDepartures: function () {
