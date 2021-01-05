@@ -49,6 +49,8 @@
 .mta__train--logo {
   line-height: 29px;
   margin-right: 10px;
+  display: inline-block;
+  margin-bottom: -5px;
 }
 
 .mta__train--time,
@@ -111,4 +113,11 @@
 
 .mta__train--line-7 {
   background: #b933ad;
+}
+
+.mta__train--line-sir {
+  background-color: #002856;
+  font-size: 15px;
+  height: 35px;
+  width: 35px;
 }
