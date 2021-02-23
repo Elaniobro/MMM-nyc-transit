@@ -35,7 +35,7 @@
     "eslint": "^6.0.1",
     "fs-extra": "^7.0.0",
     "husky": "^3.0.0",
-    "mta-realtime-subway-departures": "^1.0.0"
+    "mta-realtime-subway-departures": "^1.2.0"
   },
   "husky": {
     "hooks": {
