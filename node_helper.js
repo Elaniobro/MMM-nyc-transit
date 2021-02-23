@@ -11,7 +11,7 @@ var mtaStationIds = require('mta-subway-stations')
 
 module.exports = NodeHelper.create({
   start: function () {
-        console.log(this.name + ' helper method started...'); /*eslint-disable-line*/
+    console.log( this.name + ' helper method started...'); /*eslint-disable-line*/
   },
 
   getDepartures: function (config) {
@@ -25,7 +25,10 @@ module.exports = NodeHelper.create({
     var dirDownTown = config.stations.map((obj) => obj.dir.downTown)
     var isList = config.displayType !== 'marquee'
 
-    fs.readFile(`${__dirname}/node_modules/mta-subway-complexes/complexes.json`, 'utf8')
+    fs.readFile(
+      `${__dirname}/node_modules/mta-subway-complexes/complexes.json`,
+      'utf8'
+    )
       .then((data) => {
         stationIds = JSON.parse(data)
       })
@@ -33,7 +36,8 @@ module.exports = NodeHelper.create({
         throw new Error(err)
       })
 
-    client.departures(stations)
+    client
+      .departures(stations)
       .then((responses) => {
         var upTown = []
         var downTown = []
@@ -42,7 +46,6 @@ module.exports = NodeHelper.create({
           var temp = responses
 
           responses = []
-
           responses.push(temp)
         }
 
@@ -56,7 +59,7 @@ module.exports = NodeHelper.create({
                 }
               }
 
-              if(i.destinationStationId !== undefined && dirUpTown[n]) {
+              if (i.destinationStationId !== undefined &&dirUpTown[n]) {
                 upTown.push({
                   routeId: i.routeId,
                   time: this.getDate(i.time, walkingTime[n]),
@@ -67,13 +70,11 @@ module.exports = NodeHelper.create({
                   walkingTime: walkingTime[n],
                 })
               }
-
             })
 
             // Nothbound Departures
             line.departures.N.forEach((i) => {
               for (var key in mtaStationIds) {
-
                 if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
                   i.destinationStationId = mtaStationIds[key]['Complex ID']
                 }
@@ -90,17 +91,85 @@ module.exports = NodeHelper.create({
                   walkingTime: walkingTime[n],
                 })
               }
+              responses.forEach((response, n) => {
+                response.lines.forEach((line) => {
+                  // Southbound Departures
+                  line.departures.S.forEach((i) => {
+                    for (var key in mtaStationIds) {
+                      if (i.destinationStationId === mtaStationIds[key]['Station ID']) {
+                        i.destinationStationId = mtaStationIds[key]['Complex ID']
+                      }
+                    }
 
+                    if (i.destinationStationId !== undefined && dirUpTown[n]) {
+                      upTown.push({
+                        routeId: i.routeId,
+                        time: this.getDate(
+                          i.time,
+                          walkingTime[n]
+                        ),
+                        destination:
+                          i.destinationStationId ==='281'
+                            ? stationIds['606'].name
+                            : stationIds[
+                              i.destinationStationId].name,
+                        walkingTime: walkingTime[n],
+                      })
+                    }
+                  })
+
+                  // Nothbound Departures
+                  line.departures.N.forEach((i) => {
+                    for (var key in mtaStationIds) {
+                      if (i.destinationStationId ===mtaStationIds[key]['Station ID']) {
+                        i.destinationStationId = mtaStationIds[key]['Complex ID']
+                      }
+                    }
+
+                    if (i.destinationStationId !== undefined && dirDownTown[n]) {
+                      downTown.push({
+                        routeId: i.routeId,
+                        time: this.getDate(
+                          i.time,
+                          walkingTime[n]
+                        ),
+                        destination:
+                          i.destinationStationId ==='281'
+                            ? stationIds['606'].name
+                            : stationIds[i.destinationStationId].name,
+                        walkingTime: walkingTime[n],
+                      })
+                    }
+                  })
+                })
+              })
+
+              if (isList) {
+                self.sendSocketNotification('TRAIN_TABLE', [
+                  { downTown: downTown.filter((train) => train.time > 0),},
+                  { upTown: upTown.filter((train) => train.time > 0),},
+                ])
+              } else {
+                self.sendSocketNotification('TRAIN_TABLE', [
+                  { downTown: downTown.filter((train) => train.time > 0).slice(0, 3),},
+                  { upTown: upTown.filter((train) => train.time > 0).slice(0, 3),},
+                ])
+              }
             })
           })
         })
 
         if (isList) {
-          self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter((train) => train.time > 0) }, { upTown: upTown.filter((train) => train.time > 0) }])
+          self.sendSocketNotification('TRAIN_TABLE', [
+            { downTown: downTown.filter((train) => train.time > 0),},
+            { upTown: upTown.filter((train) => train.time > 0) },
+          ])
         } else {
-          self.sendSocketNotification('TRAIN_TABLE', [{ downTown: downTown.filter((train) => train.time > 0).slice(0, 3) }, { upTown: upTown.filter((train) => train.time > 0).slice(0, 3) }])
+          self.sendSocketNotification('TRAIN_TABLE', [
+            { downTown: downTown.filter((train) => train.time > 0).slice(0, 3),},
+            { upTown: upTown.filter((train) => train.time > 0).slice(0, 3),},
+          ])
         }
-
       })
       .catch((err) => {
         throw new Error(err)
@@ -109,11 +178,11 @@ module.exports = NodeHelper.create({
 
   getDate: function (time, walkingTime) {
     // time is a unix_timestamp
-    var now = Math.round((new Date()).getTime() / 1000)
+    var now = Math.round(new Date().getTime() / 1000)
     var secdiff = time - now
     var mindiff = Math.floor(secdiff / 60)
 
-    mindiff = '0' + mindiff % 60
+    mindiff = '0' + (mindiff % 60)
 
     // Will display time in minutes format
     var formattedTime = Number(mindiff.substr(-2))
@@ -126,5 +195,5 @@ module.exports = NodeHelper.create({
     if (notification === 'GET_DEPARTURES') {
       this.getDepartures(config)
     }
-  }
+  },
 })
