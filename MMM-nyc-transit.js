@@ -323,12 +323,28 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
     }, loadTime)
   },
 
+  arrayEquals: function (a, b) {
+    if (a.length !== b.length) {
+      return false
+    } else {
+      for (var i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+          return false
+        }
+      }
+
+      return true
+    }
+  },
+
   socketNotificationReceived: function (notification, payload) {
-    if (notification === 'TRAIN_TABLE') {
+    var myStations = this.config.stations.map((obj) => obj.stationId)
+
+    if (notification === 'TRAIN_TABLE' && this.arrayEquals(payload['stations'], myStations)) {
       // eslint-disable-next-line no-console
       console.log('socketNotificationReceived: "TRAIN_TABLE": ', this.result)
 
-      this.result = payload
+      this.result = payload['data']
       this.updateDom(self.config.fadeSpeed)
     } else if (notification === 'DOM_OBJECTS_CREATED') {
       // eslint-disable-next-line no-console
