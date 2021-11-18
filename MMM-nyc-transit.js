@@ -329,7 +329,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
       console.log('socketNotificationReceived: "TRAIN_TABLE": ', this.result)
 
       this.result = payload
-      this.updateDom(self.config.fadeSpeed)
+      this.updateDom(this.config.fadeSpeed)
     } else if (notification === 'DOM_OBJECTS_CREATED') {
       // eslint-disable-next-line no-console
       console.log('Dom Objects Created')
