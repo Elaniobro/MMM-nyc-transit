@@ -323,12 +323,12 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
     }, loadTime)
   },
 
-  arrayEquals: function (a, b) {
-    if (a.length !== b.length) {
+  stationArrayEquals: function (stationsLeft, stationsRight) {
+    if (stationsLeft.length !== stationsRight.length) {
       return false
     } else {
-      for (var i = 0; i < a.length; i++) {
-        if (a[i] !== b[i]) {
+      for (var i = 0; i < stationsLeft.length; i++) {
+        if (stationsLeft[i] !== stationsRight[i]) {
           return false
         }
       }
@@ -340,7 +340,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
   socketNotificationReceived: function (notification, payload) {
     var myStations = this.config.stations.map((obj) => obj.stationId)
 
-    if (notification === 'TRAIN_TABLE' && this.arrayEquals(payload['stations'], myStations)) {
+    if (notification === 'TRAIN_TABLE' && this.stationArrayEquals(payload['stations'], myStations)) {
       // eslint-disable-next-line no-console
       console.log('socketNotificationReceived: "TRAIN_TABLE": ', this.result)
 
