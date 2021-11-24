@@ -59,8 +59,8 @@ module.exports = NodeHelper.create({
                 }
               }
 
-              if (i.destinationStationId !== undefined &&dirUpTown[n]) {
-                upTown.push({
+              if (i.destinationStationId !== undefined && dirDownTown[n]) {
+                downTown.push({
                   routeId: i.routeId,
                   time: this.getDate(i.time, walkingTime[n]),
                   destination:
@@ -80,8 +80,8 @@ module.exports = NodeHelper.create({
                 }
               }
 
-              if (i.destinationStationId !== undefined && dirDownTown[n]) {
-                downTown.push({
+              if (i.destinationStationId !== undefined && dirUpTown[n]) {
+                upTown.push({
                   routeId: i.routeId,
                   time: this.getDate(i.time, walkingTime[n]),
                   destination:
@@ -101,8 +101,8 @@ module.exports = NodeHelper.create({
                       }
                     }
 
-                    if (i.destinationStationId !== undefined && dirUpTown[n]) {
-                      upTown.push({
+                    if (i.destinationStationId !== undefined && dirDownTown[n]) {
+                      downTown.push({
                         routeId: i.routeId,
                         time: this.getDate(
                           i.time,
@@ -126,8 +126,8 @@ module.exports = NodeHelper.create({
                       }
                     }
 
-                    if (i.destinationStationId !== undefined && dirDownTown[n]) {
-                      downTown.push({
+                    if (i.destinationStationId !== undefined && dirUpTown[n]) {
+                      upTown.push({
                         routeId: i.routeId,
                         time: this.getDate(
                           i.time,
