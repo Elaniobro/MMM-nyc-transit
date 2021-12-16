@@ -60,7 +60,6 @@
       ]
     },
     {
-
       "login": "nipper2000h",
       "name": "nipper2000h",
       "avatar_url": "https://avatars3.githubusercontent.com/u/60026688?v=4",
@@ -74,6 +73,16 @@
       "name": "Kurt Raschke",
       "avatar_url": "https://avatars2.githubusercontent.com/u/118546?v=4",
       "profile": "https://kurtraschke.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "joolean",
+      "name": "Julian Graham",
+      "avatar_url": "https://avatars.githubusercontent.com/u/799596?v=4",
+      "profile": "http://undecidable.net/joolean/",
       "contributions": [
         "bug",
         "code"
