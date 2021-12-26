@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable --immutable-cache --check-cache
       - run: yarn test
 
   publish-gpr:
@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: yarn install --frozen-lockfile
-      - run: npm publish
+      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
