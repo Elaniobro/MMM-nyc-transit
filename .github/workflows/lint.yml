@@ -11,4 +11,3 @@ jobs:
       run: yarn
     - name: Run ESLint
       run: eslint . --ext .js
-    - name: Run
