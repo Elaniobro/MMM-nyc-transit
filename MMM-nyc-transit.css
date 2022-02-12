@@ -111,6 +111,24 @@
   background: #00933c;
 }
 
+.mta__train--line-express {
+  transform: rotate(45deg);
+  height: 20px;
+  width: 20px;
+  border-radius: 0;
+  margin: 4px 12px 0px 7px;
+}
+
+.mta__train--line-express .express {
+  transform: rotate(-45deg);
+  display: table-cell;
+  vertical-align: middle;
+  height: 20px;
+  width: 20px;
+  line-height: 1;
+  font-size: 18px;
+}
+
 .mta__train--line-7 {
   background: #b933ad;
 }
