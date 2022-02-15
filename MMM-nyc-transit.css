@@ -35,6 +35,10 @@
   text-align: left;
 }
 
+.mta__train--item-express {
+  margin: 3px 0px;
+}
+
 .mta__train--marquee .mta__train--list {
   list-style: none;
 }
@@ -116,7 +120,8 @@
   height: 20px;
   width: 20px;
   border-radius: 0;
-  margin: 4px 12px 0px 7px;
+  margin: 0px 17px 0px 4px;
+  padding: 0px 1px 0px 1px;
 }
 
 .mta__train--line-express .express {
@@ -125,7 +130,7 @@
   vertical-align: middle;
   height: 20px;
   width: 20px;
-  line-height: 1;
+  line-height: 0;
   font-size: 18px;
 }
 

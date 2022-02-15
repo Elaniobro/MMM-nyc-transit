@@ -155,7 +155,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
                           "min</span>"
                   ) +
               " </span>"; /*eslint-disable-line*/
-          downTownListItem.className = 'mta__train--item'
+          downTownListItem.className = 'mta__train--item mta__train--item-' + this.isExpress(dKey)
           downTownListItem.innerHTML = dHtml
 
           list.appendChild(downTownListItem)
@@ -208,7 +208,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
                   ) +
               " </span>"; /*eslint-disable-line*/
 
-          upTownListItem.className = 'mta__train--item'
+          upTownListItem.className = 'mta__train--item  mta__train--item-' + this.isExpress(uKey);
           upTownListItem.innerHTML = uHtml
 
           list.appendChild(upTownListItem)
