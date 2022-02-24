@@ -1,6 +1,6 @@
 {
   "name": "@elaniobro/mmm-nyc-transit",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "New York City realtime transit module for magic mirror",
   "main": "MMM-nyc-transit.js",
   "publishConfig": {
@@ -9,7 +9,9 @@
   },
   "scripts": {
     "cm": "cz",
-    "lint": "eslint **/*.js --ignore-pattern node_modules/",
+    "lint:js": "eslint **/*.js --ignore-pattern node_modules/",
+    "lint:style": "stylelint **/*.css",
+    "lint": "yarn lint:js && yarn lint:style",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,13 +35,21 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.17.0",
     "chalk": "^2.4.1",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "^6.0.1",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "fs-extra": "^7.0.0",
     "husky": "^3.0.0",
-    "mta-realtime-subway-departures": "^1.2.0"
+    "mta-realtime-subway-departures": "^1.2.0",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.5.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^25.0.0"
   },
   "husky": {
     "hooks": {

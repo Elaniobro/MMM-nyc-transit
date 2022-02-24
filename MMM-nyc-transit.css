@@ -11,7 +11,7 @@
 }
 
 .mta__train {
-  color: #fff;
+  color: #ffffff;
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -33,6 +33,10 @@
 .mta__train--item {
   display: block;
   text-align: left;
+}
+
+.mta__train--item-express {
+  margin: 3px 0;
 }
 
 .mta__train--marquee .mta__train--list {
@@ -59,7 +63,7 @@
 }
 
 .mta__train--time {
-  color: #fff;
+  color: #ffffff;
 }
 
 .mta__train--line-a,
@@ -81,7 +85,7 @@
 
 .mta__train--line-j,
 .mta__train--line-z {
-  background: #963;
+  background: #996633;
 }
 
 .mta__train--line-l {
@@ -102,13 +106,32 @@
 .mta__train--line-1,
 .mta__train--line-2,
 .mta__train--line-3 {
-  background: #ee352E
+  background: #ee352e
 }
 
 .mta__train--line-4,
 .mta__train--line-5,
 .mta__train--line-6 {
   background: #00933c;
+}
+
+.mta__train--line-express {
+  transform: rotate(45deg);
+  height: 20px;
+  width: 20px;
+  border-radius: 0;
+  margin: 0 17px 0 4px;
+  padding: 0 1px;
+}
+
+.mta__train--line-express .express {
+  transform: rotate(-45deg);
+  display: table-cell;
+  vertical-align: middle;
+  height: 20px;
+  width: 20px;
+  line-height: 0;
+  font-size: 18px;
 }
 
 .mta__train--line-7 {
