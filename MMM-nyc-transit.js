@@ -51,7 +51,7 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
     // call back function for mutation observer
     var callback = function (mutationsList, observer) { /*eslint-disable-line*/
       // Use traditional 'for loops' for IE 11
-      for (let mutation of mutationsList) {
+      for (var mutation of mutationsList) {
         if (mutation.type === 'childList') {
           var trainTimes = document.querySelectorAll('.mta__train--time span')
 
