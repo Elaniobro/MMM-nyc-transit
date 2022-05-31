@@ -84,7 +84,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## 👨🏻 Author
 **Elan Trybuch**
 * [github](https://www.github.com/elaniobro)
-* [twitter](https://www.twitte.com/elaniobro)
+* [twitter](https://www.twitter.com/elaniobro)
 
 ### ⚖️ License
 This project is licensed under the MIT License - see the LICENSE.md file for details
