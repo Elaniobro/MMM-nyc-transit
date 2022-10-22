@@ -57,7 +57,7 @@
     }
   },
   "dependencies": {
-    "mta-subway-stations": "0.0.2",
+    "mta-subway-stations": "1.0.0",
     "user": "0.0.0"
   },
   "config": {
