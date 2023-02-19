@@ -1,7 +1,6 @@
 # MTA transit module for MagicMirror²
 
-
-## 🛡Badges
+## 🛡 Badges
 <!-- Social info -->
 ![follow on Twitte](https://img.shields.io/twitter/follow/elaniobro?style=social&logo=twitter)  ![GitHub followers](https://img.shields.io/github/followers/elaniobro?style=social)
 <!-- Application info -->
@@ -13,9 +12,11 @@
 ![](https://user-images.githubusercontent.com/710847/80649891-dab42300-8a40-11ea-96ac-f76926f1b109.png)
 
 ## ℹ️ How to use this module
-1. clone this repo into your moducles directory with the following command: `git clone https://github.com/Elaniobro/MMM-nyc-transit.git`
-1. install all the npm modules with either `yarn install` or `npm install`
-1. update your [Magic Mirror Config](https://github.com/MichMich/MagicMirror/blob/master/config/config.js.sample), by adding the following object:
+
+1. clone this repo into your moducles directory with the following command: `git clone https://github.com/Elaniobro/MMM-nyc-transit`
+2. install all the npm modules with either `yarn install` or `npm install`
+3. update your [Magic Mirror Config](https://github.com/MichMich/MagicMirror/blob/master/config/config.js.sample), by adding the following object:
+
 ```javascript
   {
     module: 'MMM-nyc-transit',
@@ -49,6 +50,7 @@
 ```
 
 ## 🛠️ Config
+
 * `module` the name of the module you are installing.
 * `position` where you want the mmm-nyc-transit module to appear.
   * <span style="font-size: 12px; color: #999; font-weight: bold">_note: configurable, see MM documentation_</span>
@@ -62,7 +64,7 @@
 * `apiKey` see [mta api Key](#🔑-mta-api-Key) on where to obtain yours.
 * `mtaType` _coming soon, choose bus and or train_
 * `stations` array to store each station config.
-  * `stationId` find your [station(s)](#🚆-station) id(s).
+  * `stationId` find your [station(s)](#-station-list) id(s).
   * `walkingTime` allows you to pad the realtime data time, with travel time to the station.
   * `dir` object to hold which directions of the train to show
     * `upTown` boolean value
@@ -70,26 +72,31 @@
 * `updateInterval` default is set to 5 minutes
   * __low interval will result in your MTA api key timing out__
 
-## 🔑 MTA API Key:
+## 🔑 MTA API Key
+
 You will need to sign up for the MTA Real-Time Data Feeds API. To get a key, please visit their website: [api.mta.info](https://api.mta.info/).
 
+## 🚆 Station List
 
-## 🚆 Station List:
-Find the corresponding `Name` and `id` in the <a href="./STATION_LIST.md">STATION_LIST.md</a> object to insert into the config array.
-
+Find the corresponding `Name` and `id` in the [STATION_LIST.md](STATION_LIST.md) object to insert into the config array.
 
 ## ✨ Contributing
+
 Pull requests and stars are always welcome. For bugs and feature requests, [please open an issue](https://github.com/elaniobro/mmm-nyc-transit/issues)
 
 ## 👨🏻 Author
+
 **Elan Trybuch**
+
 * [github](https://www.github.com/elaniobro)
 * [twitter](https://www.twitter.com/elaniobro)
 
 ### ⚖️ License
+
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
 ### 🙏🏽 Acknowledgments
+
 * [Eric Lewis](https://github.com/ericandrewlewis/mta-realtime-subway-departures/blob/master/package.json)
 
 ## Contributors ✨
