@@ -1,4 +1,4 @@
-# MTA transit module for Magic Mirror
+# MTA transit module for MagicMirror²
 
 
 ## 🛡Badges

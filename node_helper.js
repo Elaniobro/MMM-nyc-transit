@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-NYC-transit
  *
  * By Elan Trybuch https://github.com/elaniobro

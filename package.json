@@ -1,7 +1,7 @@
 {
   "name": "@elaniobro/mmm-nyc-transit",
   "version": "5.1.0",
-  "description": "New York City realtime transit module for magic mirror",
+  "description": "New York City realtime transit module for MagicMirror²",
   "main": "MMM-nyc-transit.js",
   "publishConfig": {
     "access": "public",
