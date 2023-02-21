@@ -87,6 +87,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "KristjanESPERANTO",
+      "name": "Kristjan ESPERANTO",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35647502?v=4",
+      "profile": "https://github.com/KristjanESPERANTO",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -94,5 +103,6 @@
   "projectOwner": "Elaniobro",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
