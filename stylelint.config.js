@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: ['stylelint-config-standard'],
   // add your custom config here
   // https://stylelint.io/user-guide/configuration
   // ignore all files that are not of the 3 types listed below
@@ -21,7 +21,6 @@ module.exports = {
     'block-no-empty': true,
     'color-no-invalid-hex': true,
     'color-hex-length': 'long',
-    'color-hex-case': 'lower',
     'font-family-no-duplicate-names': true,
     'font-family-no-missing-generic-family-keyword': [
       true,
@@ -29,7 +28,6 @@ module.exports = {
         ignoreFontFamilies: ['Nunito'],
       },
     ],
-    'no-extra-semicolons': true,
     'no-invalid-double-slash-comments': true,
     'property-no-vendor-prefix': true,
     'selector-class-pattern': null,
