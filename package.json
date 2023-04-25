@@ -47,7 +47,7 @@
     "husky": "^8.0.3",
     "mta-realtime-subway-departures": "^1.2.1",
     "prettier": "^2.8.4",
-    "stylelint": "^15.1.0",
+    "stylelint": "^15.6.0",
     "stylelint-config-standard": "^30.0.1"
   },
   "husky": {
