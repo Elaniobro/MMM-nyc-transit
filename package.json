@@ -1,7 +1,7 @@
 {
   "name": "@elaniobro/mmm-nyc-transit",
   "version": "5.1.0",
-  "description": "New York City realtime transit module for MagicMirror²",
+  "description": "New York City realtime transit module for MagicMirror².",
   "main": "MMM-nyc-transit.js",
   "publishConfig": {
     "access": "public",
@@ -19,14 +19,12 @@
     "url": "https://github.com/Elaniobro/MMM-nyc-transit"
   },
   "keywords": [
-    "Magic",
-    "Mirror",
-    "Magic Mirror",
-    "MMM",
+    "MagicMirror",
     "NYC",
     "transit",
     "subway",
-    "bus"
+    "bus",
+    "public transport"
   ],
   "author": {
     "name": "Elan Trybuch",
