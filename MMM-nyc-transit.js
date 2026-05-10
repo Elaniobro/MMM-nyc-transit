@@ -141,6 +141,9 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
               dKey.toLowerCase() +
               '"> ' +
               trainHashMap.downTown[dKey].time
+                  .filter((value, index, self) => {
+                    return self.indexOf(value) === index;
+                  })
                   .slice(0, 3)
                   .map(
                       (trainTime, i) =>
@@ -193,6 +196,9 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
               uKey.toLowerCase() +
               '"> ' +
               trainHashMap.upTown[uKey].time
+                  .filter((value, index, self) => {
+                    return self.indexOf(value) === index;
+                  })
                   .slice(0, 3)
                   .map(
                       (trainTime, i) =>
