@@ -17,13 +17,16 @@
 2. install all the npm modules with either `yarn install` or `npm install`
 3. update your [MagicMirror² Config](https://github.com/MagicMirrorOrg/MagicMirror/blob/master/config/config.js.sample), by adding the following object:
 
+### 🚇 Train Configuration (no API key required)
+
+The MTA Subway Real-Time feeds are **free and open** — no API key is needed for train data.
+
 ```javascript
   {
     module: 'MMM-nyc-transit',
     position: "top_bar",
     header: "Next Train",
     config: {
-      apiKey: 'YOUR_KEY_HERE',
       displayType: 'list',
       mtaType: 'train',
       stations: [
@@ -49,32 +52,97 @@
   }
 ```
 
+### 🚌 Bus Configuration (API key required)
+
+Bus data uses the MTA Bus Time API, which **requires an API key**. See [MTA API Key](#-mta-api-key) below for how to get one.
+
+```javascript
+  {
+    module: 'MMM-nyc-transit',
+    position: "top_bar",
+    header: "Next Bus",
+    config: {
+      apiKey: 'YOUR_BUS_TIME_API_KEY',
+      displayType: 'list',
+      mtaType: 'bus',
+      stations: [
+        {
+          stationId: 308209,
+          walkingTime: 3,
+          dir: {
+            upTown: true,
+            downTown: false
+          }
+        }
+      ],
+      updateInterval: 300000
+    }
+  }
+```
+
 ## 🛠️ Config
 
-* `module` the name of the module you are installing.
-* `position` where you want the mmm-nyc-transit module to appear.
-  * <span style="font-size: 12px; color: #999; font-weight: bold">_note: configurable, see MM documentation_</span>
-* `header` display name for what you want to call your module on screen
-  * <span style="font-size: 12px; color: #999; font-weight: bold">_note: optional_</span>
-* `displayType` choose between scrolling marquee (default) or list
-  * `list` - shows next 3 trains for each line, both uptown and downtown
-    * <span style="font-size: 12px; color: #999; font-weight: bold">_note: works best on side_</span>
-  * `marquee` - shows next 6 trains, 3 for uptown and 3 for downtown
-    * <span style="font-size: 12px; color: #999; font-weight: bold">_note: works best on top_</span>
-* `apiKey` see [mta api Key](#🔑-mta-api-Key) on where to obtain yours.
-* `mtaType` _coming soon, choose bus and or train_
-* `stations` array to store each station config.
-  * `stationId` find your [station(s)](#-station-list) id(s).
-  * `walkingTime` allows you to pad the realtime data time, with travel time to the station.
-  * `dir` object to hold which directions of the train to show
-    * `upTown` boolean value
-    * `downTown` boolean value
-* `updateInterval` default is set to 5 minutes
-  * __low interval will result in your MTA api key timing out__
+| Option | Description | Default | Required |
+|---|---|---|---|
+| `module` | The name of the module you are installing. | `'MMM-nyc-transit'` | Yes |
+| `position` | Where the module appears. See [MM documentation](https://docs.magicmirror.builders/modules/configuration.html) for options. | `'top_bar'` | Yes |
+| `header` | Display name for your module on screen. | `'Next Train'` | No |
+| `displayType` | `'list'` or `'marquee'` (scrolling). List works best on side positions, marquee on top. | `'marquee'` | No |
+| `apiKey` | Your MTA API key. **Only required for `mtaType: 'bus'`**. Not needed for trains. | `undefined` | Bus only |
+| `mtaType` | Type of transit data to display: `'train'` or `'bus'`. | `'train'` | No |
+| `stations` | Array of station config objects (see below). | — | Yes |
+| `updateInterval` | How often to refresh data, in milliseconds. | `300000` (5 min) | No |
+
+### Station Object
+
+| Option | Description | Required |
+|---|---|---|
+| `stationId` | The numeric station/complex ID. Find yours in the [Station List](#-station-list). | Yes |
+| `walkingTime` | Minutes to walk to the station. Pads the realtime arrival times so you only see trains you can catch. | Yes |
+| `dir` | Object with `upTown` (boolean) and `downTown` (boolean) to filter direction. | Yes |
 
 ## 🔑 MTA API Key
 
-You will need to sign up for the MTA Real-Time Data Feeds API. To get a key, please visit their website: [api.mta.info](https://api.mta.info/).
+### Subway / Train (`mtaType: 'train'`)
+
+**No API key is required.** The MTA Subway Real-Time Data Feeds (GTFS-RT) are open and free to access without authentication.
+
+You can browse the available subway feeds on the [MTA Subway Real-Time Feeds](https://api.mta.info/#/subwayRealTimeFeeds) page.
+
+### Bus (`mtaType: 'bus'`)
+
+An API key **is required** for MTA Bus Time data. To get one:
+
+1. Visit the [MTA Bus Time Developer Portal](https://bustime.mta.info/wiki/Developers/Index)
+2. Submit the API key request form
+3. You will receive your key via email (typically within ~30 minutes)
+
+## 📡 Data Sources
+
+This module pulls real-time data from two different MTA APIs depending on the `mtaType` you configure:
+
+| `mtaType` | API | Format | Auth | Documentation |
+|---|---|---|---|---|
+| `'train'` | MTA Subway GTFS-RT Feeds | [GTFS-Realtime](https://gtfs.org/realtime/) (Protocol Buffers) | None (open access) | [Subway Real-Time Feeds](https://api.mta.info/#/subwayRealTimeFeeds) |
+| `'bus'` | MTA Bus Time (SIRI / GTFS-RT) | SIRI XML / JSON | API key required | [Bus Time Developer Portal](https://bustime.mta.info/wiki/Developers/Index) |
+
+### Subway Feed URLs
+
+The subway feeds are grouped by line. This module automatically selects the correct feed based on the lines serving your configured station(s):
+
+| Lines | Feed |
+|---|---|
+| 1, 2, 3, 4, 5, 6, S | `nyct/gtfs` |
+| A, C, E, H (Rockaway Shuttle) | `nyct/gtfs-ace` |
+| N, Q, R, W | `nyct/gtfs-nqrw` |
+| B, D, F, M | `nyct/gtfs-bdfm` |
+| L | `nyct/gtfs-l` |
+| G | `nyct/gtfs-g` |
+| J, Z | `nyct/gtfs-jz` |
+| 7 | `nyct/gtfs-7` |
+| SIR (Staten Island Railway) | `nyct/gtfs-si` |
+
+All feeds are served from `https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/`. For the full interactive list, see [api.mta.info/#/subwayRealTimeFeeds](https://api.mta.info/#/subwayRealTimeFeeds).
 
 ## 🚆 Station List
 
@@ -97,7 +165,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ### 🙏🏽 Acknowledgments
 
-* [Eric Lewis](https://github.com/ericandrewlewis/mta-realtime-subway-departures/blob/master/package.json)
+* [Eric Lewis](https://github.com/ericandrewlewis/mta-realtime-subway-departures)
 
 ## Contributors ✨
 

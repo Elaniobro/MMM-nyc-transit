@@ -17,7 +17,13 @@ module.exports = NodeHelper.create({
 
   getDepartures: async function (config) {
     var apiKey = config.apiKey
-    var client = createClient(apiKey)
+    var mtaType = config.mtaType || 'train'
+    var client
+    if (mtaType === 'train' && (!apiKey || apiKey.trim() === '')) {
+      client = createClient()
+    } else {
+      client = createClient(apiKey)
+    }
     var self = this
     var stations = config.stations.map((obj) => obj.stationId)
     var stationIds = {}
