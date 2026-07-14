@@ -39,11 +39,26 @@ Module.register('MMM-nyc-transit', { /*eslint-disable-line*/
   },
 
   start: function () {
-    this.getDepartures()
-    this.scheduleUpdate()
+    this.configError = null
+    var mtaType = this.config.mtaType || 'train'
+    if (mtaType === 'bus' && (!this.config.apiKey || this.config.apiKey.trim() === '')) {
+      this.configError = 'An API key is required when using mtaType: "bus".'
+      Log.error(this.name + ': ' + this.configError)
+    }
+
+    if (!this.configError) {
+      this.getDepartures()
+      this.scheduleUpdate()
+    }
   },
 
   getDom: function () {
+    if (this.configError) {
+      var errorWrapper = document.createElement('div')
+      errorWrapper.className = 'MMM-nyc-transit dimmed light small'
+      errorWrapper.innerHTML = this.configError
+      return errorWrapper
+    }
     // Set up targetnode based on position set in config
     var targetNode = document.querySelector('.region.' + this.config.position.split('_').join('.') + ' .container')
     // set up mutation observer config options
